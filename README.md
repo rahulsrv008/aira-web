@@ -1,9 +1,9 @@
 # Aira Luxury
 
-Marketing site for Aira Luxury, the at-home beauty app.
-
-Open `index.html` in a browser, or from this folder:
+Angular marketing site for Aira Luxury.
 
 ```bash
-npx serve .
+npm start
 ```
+
+Opens at http://localhost:4400.

@@ -1,0 +1,142 @@
+<header class="topbar">
+  <a class="brand" href="#home" aria-label="Aira Luxury home">
+    <svg viewBox="0 0 54 62" fill="none" aria-hidden="true">
+      <path d="M27 5 31 15 42 9 39 21 51 25 39 31 44 44 31 39 27 55 22 39 10 44 15 31 3 25 15 21 12 9 23 15Z" stroke="#D5A45E" stroke-width="1.5"/>
+      <path d="M27 19c-8 8-9 17-3 27 2-7 5-12 10-16-1 7-1 12 3 17" stroke="#F0C98E" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M17 53h20" stroke="#D5A45E"/>
+    </svg>
+    <span class="brand-name">AIRA<small>L U X U R Y</small></span>
+  </a>
+  <button class="menu-toggle" type="button" aria-label="Open navigation" (click)="menuOpen.set(!menuOpen())">☰</button>
+  <nav class="nav" [class.open]="menuOpen()">
+    <a href="#home" (click)="closeMenu()">Home</a>
+    <a href="#services" (click)="closeMenu()">Services</a>
+    <a href="#about" (click)="closeMenu()">Our Story</a>
+    <a href="#experience" (click)="closeMenu()">Why Aira</a>
+    <a href="#contact" class="nav-cta" (click)="closeMenu()">Book an Appointment ↗</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="slides" aria-hidden="true">
+      @for (slide of slides; track slide; let i = $index) {
+        <div class="slide" [class.on]="active() === i" [style.background-image]="'url(' + slide + ')'"></div>
+      }
+    </div>
+    <div class="hero-shade"></div>
+    <div class="hero-content">
+      <div class="eyebrow">The art of feeling beautiful</div>
+      <h1>Luxury beauty.<br><em>Delivered to you.</em></h1>
+      <p>Enjoy thoughtful, professional beauty services in the comfort and privacy of your own home. Your time, your space, your moment.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#contact">Book Your Session →</a>
+        <a class="text-link" href="#services">Explore our services</a>
+      </div>
+    </div>
+    <div class="dots">
+      @for (slide of slides; track slide; let i = $index) {
+        <button type="button" [class.on]="active() === i" [attr.aria-label]="'Show photo ' + (i + 1)" (click)="show(i)"></button>
+      }
+    </div>
+  </section>
+
+  <div class="trustbar">
+    <div class="trust-item"><span class="trust-icon">⌂</span> At-home convenience</div>
+    <div class="trust-item"><span class="trust-icon">◇</span> A premium experience</div>
+    <div class="trust-item"><span class="trust-icon">♧</span> Trained professionals</div>
+    <div class="trust-item"><span class="trust-icon">✧</span> Care made personal</div>
+  </div>
+
+  <section class="services" id="services">
+    <div class="section-heading">
+      <div class="eyebrow">Aira signature services</div>
+      <h2>Indulge in a little luxury</h2>
+      <p>From everyday self-care to your most special occasions, discover beauty rituals designed around you.</p>
+    </div>
+    <div class="service-grid">
+      @for (service of services; track service.title) {
+        <article class="service-card" [class.cover]="service.cover">
+          <div class="service-photo" [style.background-image]="'url(' + service.image + ')'"></div>
+          <div class="service-copy">
+            <span>{{ service.kicker }}</span>
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.copy }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-image" role="img" aria-label="Aira facial at home"></div>
+    <div>
+      <div class="eyebrow">A more personal kind of beauty</div>
+      <h2>Your home.<br>Your sanctuary.</h2>
+      <p>At Aira Luxury, we believe self-care should feel special, never stressful. We bring a considered beauty experience to your doorstep, so you can enjoy expert attention without the rush of a salon visit.</p>
+      <div class="about-points">
+        <div class="point">Convenience<small>Beauty on your schedule</small></div>
+        <div class="point">Personal care<small>Service centred on you</small></div>
+        <div class="point">Professionalism<small>Respectful, trained experts</small></div>
+        <div class="point">Comfort<small>Your familiar surroundings</small></div>
+      </div>
+      <a class="button ink" href="#contact">Discover Aira →</a>
+    </div>
+  </section>
+
+  <section class="experience" id="experience">
+    <div class="eyebrow">Simply beautiful, from start to finish</div>
+    <h2>Your Aira experience</h2>
+    <p>A little luxury is just a few simple steps away. Tell us what you need and we’ll help plan your visit.</p>
+    <div class="steps">
+      <div class="step"><div class="step-number">01</div><h3>Choose your service</h3><p>Explore our treatments and choose the experience you would love.</p></div>
+      <div class="step"><div class="step-number">02</div><h3>Request a booking</h3><p>Share your preferred date, time and location with our team.</p></div>
+      <div class="step"><div class="step-number">03</div><h3>Relax & enjoy</h3><p>Welcome your beauty professional and enjoy your Aira moment.</p></div>
+    </div>
+  </section>
+
+  <section class="quote">
+    <blockquote>“Because feeling beautiful should fit beautifully into your life.”</blockquote>
+    <p>The Aira Luxury promise</p>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-wrap">
+      <div class="contact-intro">
+        <div class="eyebrow">Your moment starts here</div>
+        <h2>Let's make time for you.</h2>
+        <p>Tell us a little about the service you have in mind. Our team can get in touch to confirm availability and details.</p>
+        <div class="contact-detail">
+          <div>✧ <strong>At-home beauty services</strong></div>
+          <div>✉ hello@airaluxury.com</div>
+          <div>⌖ Your city / service area</div>
+        </div>
+      </div>
+      <form (submit)="requestBooking($event)">
+        <div><label for="name">Your name</label><input id="name" name="name" placeholder="Full name" required></div>
+        <div><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" required></div>
+        <div>
+          <label for="service">Choose a service</label>
+          <select id="service" name="service" required>
+            <option value="">Select service</option>
+            @for (service of services; track service.title) {
+              <option>{{ service.title }}</option>
+            }
+          </select>
+        </div>
+        <div><label for="date">Preferred date</label><input id="date" name="date" type="date"></div>
+        <div class="full"><label for="message">Anything else we should know?</label><textarea id="message" name="message" placeholder="Your area, preferred time or special requests..."></textarea></div>
+        <button class="button primary" type="submit">Request a booking →</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="brand" href="#home">
+    <svg viewBox="0 0 54 62" fill="none" aria-hidden="true"><path d="M27 5 31 15 42 9 39 21 51 25 39 31 44 44 31 39 27 55 22 39 10 44 15 31 3 25 15 21 12 9 23 15Z" stroke="#D5A45E" stroke-width="1.5"/><path d="M27 19c-8 8-9 17-3 27 2-7 5-12 10-16-1 7-1 12 3 17" stroke="#F0C98E" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <span class="brand-name">AIRA<small>L U X U R Y</small></span>
+  </a>
+  <p>Luxury beauty, right at your doorstep.</p>
+  <p>© {{ year }} Aira Luxury. All rights reserved.</p>
+</footer>

@@ -1,0 +1,17 @@
+:root {
+  --ink: #1b120d;
+  --cream: #f7f0e8;
+  --cream-deep: #eadccd;
+  --gold: #d5a45e;
+  --gold-light: #f0c98e;
+  --muted: #b9a99a;
+  --white: #fffaf4;
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--white); background: var(--ink); font-family: var(--sans); }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
