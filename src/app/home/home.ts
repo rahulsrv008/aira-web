@@ -1,4 +1,10 @@
-import { Component, OnDestroy, signal } from '@angular/core';
+import { Component, OnDestroy, afterNextRender, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { BookingForm } from '../site/booking-form';
+import { homeSchema, Seo } from '../site/seo';
+import { CITY_CARDS, HOME_FAQS, SERVICE_CARDS, SITE } from '../site/site-data';
+import { SiteFooter } from '../site/site-footer';
+import { SiteHeader } from '../site/site-header';
 
 const SLIDES = [
   '/images/hero-facial.jpg',
@@ -9,27 +15,34 @@ const SLIDES = [
 
 @Component({
   selector: 'app-home',
+  imports: [RouterLink, SiteHeader, SiteFooter, BookingForm],
   templateUrl: './home.html',
-  styleUrl: './home.scss',
 })
 export class Home implements OnDestroy {
-  readonly year = new Date().getFullYear();
   readonly slides = SLIDES;
   readonly active = signal(0);
-  readonly menuOpen = signal(false);
-  readonly services = [
-    { kicker: '01 · Skin', title: 'Facials & Skin Care', copy: 'A fresh, radiant feeling from the comfort of home.', image: '/images/service-facial.jpg', cover: false },
-    { kicker: '02 · Hair', title: 'Hair Styling & Care', copy: 'Beautiful hair days, made effortless.', image: '/images/service-hair.jpg', cover: false },
-    { kicker: '03 · Nails', title: 'Manicure & Pedicure', copy: 'Polished details and a moment to unwind.', image: '/images/service-nails.jpg', cover: false },
-    { kicker: '04 · Occasion', title: 'Party & Bridal Makeup', copy: 'Feel unforgettable for every celebration.', image: '/images/service-bridal.jpg', cover: false },
-    { kicker: '05 · Care', title: 'Waxing & Grooming', copy: 'Personal care with comfort and attention.', image: '/images/service-waxing.jpg', cover: false },
-    { kicker: '06 · Relax', title: 'Body & Spa Rituals', copy: 'Slow down and make space for yourself.', image: '/images/hero-ritual.jpg', cover: true },
+  readonly services = SERVICE_CARDS;
+  readonly cities = CITY_CARDS;
+  readonly faqs = HOME_FAQS;
+  readonly email = SITE.email;
+  readonly reasons = [
+    { title: 'Experience', copy: 'In beauty since 2000' },
+    { title: 'Convenience', copy: 'No travel, no waiting' },
+    { title: 'Personal care', copy: 'Services chosen around you' },
+    { title: 'Easy booking', copy: 'Website and mobile app' },
   ];
 
   private timer = 0;
 
   constructor() {
-    this.schedule();
+    inject(Seo).set({
+      path: '',
+      title: 'Aira Luxury | Premium Salon at Home in Delhi NCR',
+      description: 'Experience Aira Luxury, a beauty business with a journey dating back to 2000. Book haircuts, facials, waxing, hair spa, makeup and more at home in Delhi, Noida and Gurgaon.',
+      image: '/images/hero-facial.jpg',
+      schema: homeSchema(HOME_FAQS),
+    });
+    afterNextRender(() => this.schedule());
   }
 
   ngOnDestroy() {
@@ -46,25 +59,5 @@ export class Home implements OnDestroy {
     this.timer = window.setInterval(() => {
       this.active.update((index) => (index + 1) % this.slides.length);
     }, 5600);
-  }
-
-  closeMenu() {
-    this.menuOpen.set(false);
-  }
-
-  requestBooking(event: Event) {
-    event.preventDefault();
-    const data = new FormData(event.target as HTMLFormElement);
-    const subject = encodeURIComponent('Aira Luxury booking request');
-    const body = encodeURIComponent(
-      [
-        `Name: ${data.get('name')}`,
-        `Phone: ${data.get('phone')}`,
-        `Service: ${data.get('service')}`,
-        `Preferred date: ${data.get('date') || 'Not specified'}`,
-        `Message: ${data.get('message') || '—'}`,
-      ].join('\n'),
-    );
-    window.location.href = `mailto:hello@airaluxury.com?subject=${subject}&body=${body}`;
   }
 }
