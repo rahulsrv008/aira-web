@@ -2,6 +2,7 @@ export const SITE = {
   name: 'Aira Luxury',
   url: 'https://airaluxury.in',
   email: 'hello@airaluxury.com',
+  privacyEmail: 'privacy@airaluxury.in',
   foundingYear: '2000',
   slogan: 'Trusted Beauty Since 2000. Now Bringing Luxury Salon Experiences to Your Doorstep.',
   defaultImage: '/images/hero-team.jpg',
@@ -19,7 +20,7 @@ export interface Section {
   link?: { label: string; path: string };
 }
 
-export type PageKind = 'service' | 'city' | 'about' | 'services' | 'contact';
+export type PageKind = 'service' | 'city' | 'about' | 'services' | 'contact' | 'privacy' | 'delete-account';
 
 /**
  * `label` is what visitors see; `name`, `seoTitle` and `description` carry the
@@ -445,6 +446,91 @@ const OTHER_PAGES: PageContent[] = [
   },
 ];
 
-export const PAGES: PageContent[] = [...SERVICE_PAGES, ...CITY_PAGES, ...OTHER_PAGES];
+const LEGAL_PAGES: PageContent[] = [
+  {
+    path: 'privacy-policy',
+    kind: 'privacy',
+    label: 'Privacy policy',
+    name: 'Aira Luxury Privacy Policy',
+    seoTitle: 'Privacy Policy | Aira Luxury',
+    description: 'Learn how Aira Luxury collects, uses, shares, and retains personal information when you use our website and app.',
+    kicker: 'Your privacy',
+    h1: 'Privacy Policy',
+    intro: 'Last updated 13 November 2026. This policy explains how Aira Luxury handles information when you use our website and mobile app.',
+    image: '/images/hero-team.jpg',
+    imageAlt: 'Aira Luxury',
+    sections: [
+      {
+        heading: 'Information we collect',
+        paragraphs: [
+          'Depending on how you use Aira Luxury, we may collect your mobile number and one-time-passcode verification details; your name, email address, and profile details that you provide; saved addresses and service location; and information about services, appointments, payments, and support requests.',
+          'If you allow location access in the app, location information may be used to help set an address and check service availability. You can manage location permission in your device settings.',
+        ],
+      },
+      {
+        heading: 'How we use information',
+        list: [
+          'Create and secure your account, and verify sign-in requests.',
+          'Check service availability and arrange appointments at your chosen address.',
+          'Coordinate a booking with the beauty professional assigned to it.',
+          'Process or confirm payments and provide customer support.',
+          'Maintain service, security, and administrative records.',
+        ],
+      },
+      {
+        heading: 'When information is shared',
+        paragraphs: [
+          'We share only information needed to operate the service with providers who help us deliver it, such as hosting, communications, and payment providers. Appointment details needed to perform a service may be shared with the beauty professional assigned to that appointment. We may also disclose information when required by law or to protect customers, the business, or the service.',
+        ],
+      },
+      {
+        heading: 'Payments and security',
+        paragraphs: [
+          'Payments may be handled by a payment provider. Aira Luxury receives transaction details needed to manage your booking; payment information handled by a provider is subject to that provider’s own privacy terms. We use reasonable safeguards to protect information, but no online service can guarantee absolute security.',
+        ],
+      },
+      {
+        heading: 'Retention and account deletion',
+        paragraphs: [
+          'We keep information for as long as needed to provide and administer the service, meet legal obligations, resolve disputes, and protect the service. We verify control of the mobile number with a one-time code before disabling access to a matching account and recording the request for administration. Some records may be retained; submitting the form does not mean all information is immediately erased. Signing in again later may create a new account.',
+        ],
+        link: { label: 'Submit an account-deletion request', path: '/delete-account' },
+      },
+      {
+        heading: 'Contact us',
+        paragraphs: [
+          `For privacy questions or requests, email ${SITE.privacyEmail}.`,
+        ],
+      },
+    ],
+    closing: 'Your trust matters to us.',
+  },
+  {
+    path: 'delete-account',
+    kind: 'delete-account',
+    label: 'Delete account',
+    name: 'Aira Luxury Account Deletion Request',
+    seoTitle: 'Delete Your Aira Luxury Account',
+    description: 'Submit an account-deletion request for Aira Luxury using the mobile number associated with your account.',
+    kicker: 'Account settings',
+    h1: 'Delete Your Account',
+    intro: 'Verify the mobile number linked to your Aira Luxury account to submit an account-deletion request.',
+    image: '/images/hero-team.jpg',
+    imageAlt: 'Aira Luxury',
+    sections: [
+      {
+        heading: 'What happens after you submit',
+        paragraphs: [
+          'We send a one-time code to verify control of the mobile number before processing the request. If an account exists for that number, access is disabled and the request is recorded for administrative follow-up. Some information may be retained for administrative or legal requirements, so this request does not guarantee immediate erasure of every record. Signing in again later may create a new account.',
+          `You can also request account deletion from Profile → Delete account in the Aira Luxury app. For help, contact ${SITE.privacyEmail}.`,
+        ],
+        link: { label: 'Read the Privacy Policy', path: '/privacy-policy' },
+      },
+    ],
+    closing: 'Confirm your mobile number to submit a deletion request.',
+  },
+];
+
+export const PAGES: PageContent[] = [...SERVICE_PAGES, ...CITY_PAGES, ...OTHER_PAGES, ...LEGAL_PAGES];
 
 export const pageByPath = (path: string) => PAGES.find((page) => page.path === path);

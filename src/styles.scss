@@ -58,6 +58,8 @@ h1 em { color: var(--gold-light); font-weight: 500; }
 .hero-actions { display: flex; align-items: center; gap: 22px; margin-top: 34px; flex-wrap: wrap; }
 .button.primary { background: var(--gold); color: var(--ink); font-weight: 700; padding: 16px 27px; }
 .button.primary:hover { background: var(--gold-light); }
+.button.secondary { color: #6b4a2b; border-color: #a9783f; }
+.button.secondary:hover { background: var(--gold); color: var(--ink); }
 .text-link { color: #f1dfca; font-size: 13px; border-bottom: 1px solid var(--gold); padding-bottom: 5px; }
 .text-link.dark { color: #6b4a2b; display: inline-block; margin-top: 6px; }
 .dots { position: absolute; z-index: 2; left: clamp(24px, 8vw, 120px); bottom: 28px; display: flex; gap: 8px; }
@@ -173,6 +175,17 @@ form button { grid-column: 1 / -1; border: 0; }
 .copy-block ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
 .copy-block li { position: relative; padding-left: 22px; color: #4f4136; line-height: 1.7; }
 .copy-block li::before { content: "✧"; position: absolute; left: 0; color: #b78343; }
+
+.account-deletion { background: var(--cream); color: var(--ink); }
+.account-deletion-card { max-width: 860px; margin: auto; padding: 38px; border: 1px solid #d8c7b5; border-radius: 8px; background: var(--white); }
+.account-deletion-card h2 { margin: 12px 0; font: 500 clamp(28px, 3vw, 38px)/1.2 var(--serif); }
+.account-deletion-card > p { color: #5f5045; line-height: 1.8; }
+.account-deletion form { margin-top: 24px; }
+.account-deletion form button:disabled { opacity: .65; cursor: wait; transform: none; }
+.account-deletion small { display: block; margin-top: 6px; color: #746457; }
+.deletion-message { padding: 14px 16px; border: 1px solid #9a805c; border-radius: 4px; background: #f5ebdc; }
+.deletion-message.error { border-color: #b44; background: #fff0ed; color: #7a211b; }
+.deletion-contact a { color: #6b4a2b; text-decoration: underline; text-underline-offset: 3px; }
 
 .link-band { background: var(--cream-deep); color: var(--ink); text-align: center; }
 .link-band h2 { font: 500 clamp(26px, 3vw, 38px) var(--serif); margin: 0 0 30px; }

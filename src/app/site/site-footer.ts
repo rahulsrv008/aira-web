@@ -34,6 +34,8 @@ import { CITY_CARDS, SERVICE_CARDS, SITE } from './site-data';
           <a routerLink="/services">All services</a>
           <a routerLink="/contact">Book an appointment</a>
           <a routerLink="/" fragment="faq">FAQ</a>
+          <a routerLink="/privacy-policy">Privacy policy</a>
+          <a routerLink="/delete-account">Delete account</a>
         </nav>
       </div>
       <div class="footer-base">

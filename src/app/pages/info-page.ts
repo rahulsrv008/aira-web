@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { AccountDeletionForm } from '../site/account-deletion-form';
 import { BookingForm } from '../site/booking-form';
 import { pageSchema, Seo } from '../site/seo';
 import { CITY_CARDS, PageContent, pageByPath, SERVICE_CARDS } from '../site/site-data';
@@ -8,7 +9,7 @@ import { SiteHeader } from '../site/site-header';
 
 @Component({
   selector: 'app-info-page',
-  imports: [RouterLink, SiteHeader, SiteFooter, BookingForm],
+  imports: [RouterLink, SiteHeader, SiteFooter, BookingForm, AccountDeletionForm],
   template: `
     <app-site-header />
     <main>
@@ -24,7 +25,7 @@ import { SiteHeader } from '../site/site-header';
           <div class="eyebrow">{{ page.kicker }}</div>
           <h1>{{ page.h1 }}</h1>
           <p>{{ page.intro }}</p>
-          @if (page.kind !== 'contact') {
+          @if (page.kind !== 'contact' && page.kind !== 'privacy' && page.kind !== 'delete-account') {
             <div class="hero-actions">
               <a class="button primary" routerLink="/contact">Book an Appointment →</a>
               @if (page.kind !== 'services') {
@@ -35,12 +36,14 @@ import { SiteHeader } from '../site/site-header';
         </div>
       </section>
 
-      <div class="trustbar">
-        <div class="trust-item"><span class="trust-icon">✧</span> Since 2000</div>
-        <div class="trust-item"><span class="trust-icon">⌂</span> Comfort of home</div>
-        <div class="trust-item"><span class="trust-icon">⌖</span> Delhi · Noida · Gurgaon</div>
-        <div class="trust-item"><span class="trust-icon">◇</span> Website &amp; app booking</div>
-      </div>
+      @if (page.kind !== 'privacy' && page.kind !== 'delete-account') {
+        <div class="trustbar">
+          <div class="trust-item"><span class="trust-icon">✧</span> Since 2000</div>
+          <div class="trust-item"><span class="trust-icon">⌂</span> Comfort of home</div>
+          <div class="trust-item"><span class="trust-icon">⌖</span> Delhi · Noida · Gurgaon</div>
+          <div class="trust-item"><span class="trust-icon">◇</span> Website &amp; app booking</div>
+        </div>
+      }
 
       @if (page.kind === 'contact') {
         <section class="contact">
@@ -83,7 +86,9 @@ import { SiteHeader } from '../site/site-header';
 
       @if (page.sections.length) {
         <article class="page-body">
-          <img class="page-photo" [src]="page.image" [alt]="page.imageAlt" width="1024" height="571" loading="lazy">
+          @if (page.kind !== 'privacy' && page.kind !== 'delete-account') {
+            <img class="page-photo" [src]="page.image" [alt]="page.imageAlt" width="1024" height="571" loading="lazy">
+          }
           @for (section of page.sections; track section.heading) {
             <section class="copy-block">
               <h2>{{ section.heading }}</h2>
@@ -103,6 +108,10 @@ import { SiteHeader } from '../site/site-header';
             </section>
           }
         </article>
+      }
+
+      @if (page.kind === 'delete-account') {
+        <app-account-deletion-form />
       }
 
       @if (page.kind === 'city') {
@@ -152,7 +161,7 @@ import { SiteHeader } from '../site/site-header';
 
       <section class="quote">
         <blockquote>{{ page.closing }}</blockquote>
-        @if (page.kind !== 'contact') {
+        @if (page.kind !== 'contact' && page.kind !== 'privacy' && page.kind !== 'delete-account') {
           <a class="button primary" routerLink="/contact">Book an Appointment →</a>
         }
       </section>
