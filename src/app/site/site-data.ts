@@ -20,7 +20,7 @@ export interface Section {
   link?: { label: string; path: string };
 }
 
-export type PageKind = 'service' | 'city' | 'about' | 'services' | 'contact' | 'privacy' | 'delete-account';
+export type PageKind = 'service' | 'city' | 'about' | 'services' | 'contact' | 'partner' | 'privacy' | 'delete-account';
 
 /**
  * `label` is what visitors see; `name`, `seoTitle` and `description` carry the
@@ -75,11 +75,11 @@ export const CITY_CARDS = [
 
 export const HOME_FAQS: Faq[] = [
   { q: 'Which areas do you serve?', a: 'Delhi, Noida and Gurgaon. Availability varies by locality, so check yours before booking.' },
-  { q: 'How do I book?', a: 'Choose a service and book on the Aira Luxury website or mobile app.' },
+  { q: 'How do I book?', a: 'Choose a service, then download the Aira app to check availability and book.' },
   { q: 'What services can I book?', a: "Haircuts, facials, waxing, hair spa, makeup, kids' haircuts, bridal services, manicure and pedicure, threading and hair colouring." },
   { q: 'How long has Aira Luxury been in beauty?', a: 'Our beauty journey began in 2000. We are now bringing it online so services are easier to discover and book.' },
   { q: 'Can I book more than one service?', a: 'Yes. Combined services need extra appointment time, shown when you book.' },
-  { q: 'Is there a mobile app?', a: 'Yes. You can book on the Aira Luxury app as well as the website.' },
+  { q: 'Is there a mobile app?', a: 'Yes. Book through the Aira app. This website helps you explore services and download the app.' },
 ];
 
 const SERVICE_PAGES: PageContent[] = [
@@ -89,7 +89,7 @@ const SERVICE_PAGES: PageContent[] = [
     label: 'Haircut & Styling',
     name: 'Haircut at Home',
     seoTitle: 'Haircut at Home in Delhi NCR | Aira Luxury',
-    description: 'Book a haircut at home with Aira Luxury in Delhi, Noida and Gurgaon. Trims, restyling, blow-dry and hair styling, booked online or on the app.',
+    description: 'Explore haircut services at home with Aira Luxury in Delhi, Noida and Gurgaon. Trims, restyling, blow-dry and styling details, with booking in the mobile app.',
     kicker: 'Hair',
     h1: 'Haircut at Home',
     intro: 'A fresh cut or a new look, styled for your hair type and routine, without the trip to a salon.',
@@ -314,7 +314,7 @@ const SERVICE_PAGES: PageContent[] = [
 
 const CITY_SECTIONS = (city: string, extra: string): Section[] => [
   { heading: 'What you can book', paragraphs: [`All ten Aira services are available to explore in ${city}. ${extra}`] },
-  { heading: 'How it works', list: ['Choose a service.', 'Check your locality.', 'Book on the website or app.'] },
+  { heading: 'How it works', list: ['Explore a service.', 'Check your locality in the app.', 'Book through the Aira mobile app.'] },
 ];
 
 const CITY_PAGES: PageContent[] = [
@@ -345,10 +345,10 @@ const CITY_PAGES: PageContent[] = [
     label: 'Noida',
     name: 'Salon at Home in Noida',
     seoTitle: 'Salon at Home in Noida | Aira Luxury Home Beauty Services',
-    description: 'Salon at home in Noida with Aira Luxury. Book haircuts, facials, waxing, hair spa, makeup, mani-pedi and more at home, online or on the app.',
+    description: 'Explore Aira Luxury salon-at-home services in Noida, including haircuts, facials, waxing, hair spa, makeup and mani-pedi. Book through the mobile app.',
     kicker: 'Noida',
     h1: 'Salon at Home in Noida',
-    intro: 'Everyday grooming and occasion beauty across Noida sectors, booked online or on the app.',
+    intro: 'Discover everyday grooming and occasion beauty across Noida sectors, then book in the Aira app.',
     image: '/images/hero-facial.jpg',
     imageAlt: 'Aira Luxury salon at home in Noida',
     sections: CITY_SECTIONS('Noida', 'Availability varies by sector.'),
@@ -387,7 +387,7 @@ const OTHER_PAGES: PageContent[] = [
     label: 'Our story',
     name: 'About Aira Luxury',
     seoTitle: 'About Aira Luxury | Beauty Experience Since 2000',
-    description: "Aira Luxury's beauty journey since 2000 and its growth into an online and app booking experience for home salon services in Delhi, Noida and Gurgaon.",
+    description: "Discover Aira Luxury's beauty journey since 2000, our home salon services in Delhi, Noida and Gurgaon, and the app where appointments are booked.",
     kicker: 'Since 2000',
     h1: 'About Aira Luxury',
     intro: 'A beauty business that began in 2000, now making professional beauty easier to book.',
@@ -398,7 +398,7 @@ const OTHER_PAGES: PageContent[] = [
         heading: 'Our journey',
         paragraphs: [
           'What started in 2000 as a passion for beauty and personal care has grown with changing trends and customer needs.',
-          'Today we are taking the next step: bringing our services to you, with booking on our website and mobile app.',
+          'Today we are taking the next step: sharing our services online and making booking simple through the Aira mobile app.',
         ],
       },
       {
@@ -435,14 +435,29 @@ const OTHER_PAGES: PageContent[] = [
     label: 'Book',
     name: 'Book an Appointment',
     seoTitle: 'Book an Appointment | Aira Luxury Home Salon in Delhi NCR',
-    description: 'Book Aira Luxury home salon services in Delhi, Noida and Gurgaon. Request an appointment online or book on the Aira Luxury app.',
+    description: 'Explore Aira Luxury home salon services in Delhi, Noida and Gurgaon, then book an appointment through the Aira mobile app.',
     kicker: 'Book',
     h1: 'Book an Appointment',
-    intro: 'Tell us the service, city and locality. We will confirm availability and timing.',
+    intro: 'Choose your device to download the Aira app and book an appointment.',
     image: '/images/hero-team.jpg',
     imageAlt: 'Book an Aira Luxury appointment',
     sections: [],
     closing: 'Bringing beauty home since 2000.',
+  },
+  {
+    path: 'become-a-partner',
+    kind: 'partner',
+    label: 'Become a partner',
+    name: 'Become an Aira Luxury Partner',
+    seoTitle: 'Become a Partner | Aira Luxury',
+    description: 'Partner with Aira Luxury. Tell us about yourself and your beauty business, and our team will follow up with you.',
+    kicker: 'Grow with Aira',
+    h1: 'Become an Aira Partner',
+    intro: 'Are you a beauty professional or business looking to grow? Tell us a little about yourself and we will be in touch.',
+    image: '/images/hero-team.jpg',
+    imageAlt: 'The Aira Luxury beauty team',
+    sections: [],
+    closing: 'Let’s grow together.',
   },
 ];
 

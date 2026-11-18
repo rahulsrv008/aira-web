@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AppDownloadButton } from './app-download-button';
 
 @Component({
   selector: 'app-site-header',
-  imports: [RouterLink],
+  imports: [RouterLink, AppDownloadButton],
   template: `
     <header class="topbar">
       <a class="brand" routerLink="/" aria-label="Aira Luxury home">
@@ -19,8 +20,9 @@ import { RouterLink } from '@angular/router';
         <a routerLink="/services" (click)="close()">Services</a>
         <a routerLink="/" fragment="areas" (click)="close()">Locations</a>
         <a routerLink="/about-aira-luxury" (click)="close()">Since 2000</a>
+        <a routerLink="/become-a-partner" (click)="close()">Become a partner</a>
         <a routerLink="/" fragment="faq" (click)="close()">FAQ</a>
-        <a routerLink="/contact" class="nav-cta" (click)="close()">Book an Appointment ↗</a>
+        <app-download-button buttonClass="nav-cta" (dismissed)="close()" />
       </nav>
     </header>
   `,

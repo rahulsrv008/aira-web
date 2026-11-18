@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AccountDeletionForm } from '../site/account-deletion-form';
-import { BookingForm } from '../site/booking-form';
+import { AppDownloadButton } from '../site/app-download-button';
+import { PartnerInquiryForm } from '../site/partner-inquiry-form';
 import { pageSchema, Seo } from '../site/seo';
 import { CITY_CARDS, PageContent, pageByPath, SERVICE_CARDS } from '../site/site-data';
 import { SiteFooter } from '../site/site-footer';
@@ -9,7 +10,7 @@ import { SiteHeader } from '../site/site-header';
 
 @Component({
   selector: 'app-info-page',
-  imports: [RouterLink, SiteHeader, SiteFooter, BookingForm, AccountDeletionForm],
+  imports: [RouterLink, SiteHeader, SiteFooter, AppDownloadButton, AccountDeletionForm, PartnerInquiryForm],
   template: `
     <app-site-header />
     <main>
@@ -25,9 +26,9 @@ import { SiteHeader } from '../site/site-header';
           <div class="eyebrow">{{ page.kicker }}</div>
           <h1>{{ page.h1 }}</h1>
           <p>{{ page.intro }}</p>
-          @if (page.kind !== 'contact' && page.kind !== 'privacy' && page.kind !== 'delete-account') {
+          @if (page.kind !== 'contact' && page.kind !== 'partner' && page.kind !== 'privacy' && page.kind !== 'delete-account') {
             <div class="hero-actions">
-              <a class="button primary" routerLink="/contact">Book an Appointment →</a>
+              <app-download-button label="Book an Appointment →" />
               @if (page.kind !== 'services') {
                 <a class="text-link" routerLink="/services">All services</a>
               }
@@ -41,26 +42,30 @@ import { SiteHeader } from '../site/site-header';
           <div class="trust-item"><span class="trust-icon">✧</span> Since 2000</div>
           <div class="trust-item"><span class="trust-icon">⌂</span> Comfort of home</div>
           <div class="trust-item"><span class="trust-icon">⌖</span> Delhi · Noida · Gurgaon</div>
-          <div class="trust-item"><span class="trust-icon">◇</span> Website &amp; app booking</div>
+          <div class="trust-item"><span class="trust-icon">◇</span> Book through the Aira app</div>
         </div>
       }
 
       @if (page.kind === 'contact') {
         <section class="contact">
-          <div class="contact-wrap">
+          <div class="contact-wrap single">
             <div class="contact-intro">
-              <div class="eyebrow">Request a booking</div>
-              <h2>Let's make time for you.</h2>
-              <p>Prefer the app? You can book there too.</p>
+              <div class="eyebrow">Questions or a booking?</div>
+              <h2>We're happy to help.</h2>
+              <p>For appointments, choose your platform and book through the Aira app.</p>
               <div class="contact-detail">
                 @for (city of cities; track city.path) {
                   <div>⌖ <a [routerLink]="'/' + city.path">{{ city.name }}</a></div>
                 }
               </div>
+              <app-download-button label="Get the Aira app" />
             </div>
-            <app-booking-form />
           </div>
         </section>
+      }
+
+      @if (page.kind === 'partner') {
+        <app-partner-inquiry-form />
       }
 
       @if (page.kind === 'services') {
@@ -161,8 +166,8 @@ import { SiteHeader } from '../site/site-header';
 
       <section class="quote">
         <blockquote>{{ page.closing }}</blockquote>
-        @if (page.kind !== 'contact' && page.kind !== 'privacy' && page.kind !== 'delete-account') {
-          <a class="button primary" routerLink="/contact">Book an Appointment →</a>
+        @if (page.kind !== 'contact' && page.kind !== 'partner' && page.kind !== 'privacy' && page.kind !== 'delete-account') {
+          <app-download-button label="Book an Appointment →" />
         }
       </section>
     </main>

@@ -88,7 +88,7 @@ export function pageSchema(page: PageContent): object[] {
   if (page.kind === 'service') trail.push({ name: 'Services', path: 'services' });
   trail.push({ name: page.name, path: page.path });
 
-  const webPageType = page.kind === 'about' ? 'AboutPage' : page.kind === 'contact' ? 'ContactPage' : 'WebPage';
+  const webPageType = page.kind === 'about' ? 'AboutPage' : page.kind === 'contact' || page.kind === 'partner' ? 'ContactPage' : 'WebPage';
   const graph: object[] = [
     business,
     website,

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AppDownloadButton } from './app-download-button';
 import { CITY_CARDS, SERVICE_CARDS, SITE } from './site-data';
 
 @Component({
   selector: 'app-site-footer',
-  imports: [RouterLink],
+  imports: [RouterLink, AppDownloadButton],
   template: `
     <footer class="site-footer">
       <div class="footer-grid">
@@ -31,8 +32,9 @@ import { CITY_CARDS, SERVICE_CARDS, SITE } from './site-data';
         <nav aria-label="Aira Luxury">
           <h2>Aira Luxury</h2>
           <a routerLink="/about-aira-luxury">About Aira Luxury</a>
+          <a routerLink="/become-a-partner">Become a partner</a>
           <a routerLink="/services">All services</a>
-          <a routerLink="/contact">Book an appointment</a>
+          <app-download-button label="Book an appointment" buttonClass="footer-download-button" />
           <a routerLink="/" fragment="faq">FAQ</a>
           <a routerLink="/privacy-policy">Privacy policy</a>
           <a routerLink="/delete-account">Delete account</a>

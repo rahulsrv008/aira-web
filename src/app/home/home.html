@@ -13,7 +13,7 @@
       <h1>Luxury beauty, <em>at your doorstep.</em></h1>
       <p>Professional salon care in the comfort of your home, from a beauty business that began in 2000.</p>
       <div class="hero-actions">
-        <a class="button primary" routerLink="/contact">Book an Appointment →</a>
+        <app-download-button label="Book an Appointment →" />
         <a class="text-link" routerLink="/services">Explore services</a>
       </div>
     </div>
@@ -28,7 +28,7 @@
     <div class="trust-item"><span class="trust-icon">✧</span> Since 2000</div>
     <div class="trust-item"><span class="trust-icon">⌂</span> Comfort of home</div>
     <div class="trust-item"><span class="trust-icon">⌖</span> Delhi · Noida · Gurgaon</div>
-    <div class="trust-item"><span class="trust-icon">◇</span> Website &amp; app booking</div>
+    <div class="trust-item"><span class="trust-icon">◇</span> Book through the Aira app</div>
   </div>
 
   <section class="services" id="services">
@@ -55,7 +55,7 @@
     <div>
       <div class="eyebrow">Our story</div>
       <h2>Beauty experience since 2000.</h2>
-      <p>What began as a passion for making people feel confident has grown with every trend and customer. Now we bring it to you, bookable in a few taps.</p>
+      <p>What began as a passion for making people feel confident has grown with every trend and customer. Now we bring that experience to your home, with easy booking through our app.</p>
       <div class="about-points">
         @for (reason of reasons; track reason.title) {
           <div class="point">{{ reason.title }}<small>{{ reason.copy }}</small></div>
@@ -86,7 +86,7 @@
     <h2>How it works</h2>
     <div class="steps">
       <div class="step"><div class="step-number">01</div><h3>Choose</h3><p>Pick the service you would love.</p></div>
-      <div class="step"><div class="step-number">02</div><h3>Book</h3><p>Check your locality and book online or on the app.</p></div>
+      <div class="step"><div class="step-number">02</div><h3>Book</h3><p>Choose your service and book in the Aira app.</p></div>
       <div class="step"><div class="step-number">03</div><h3>Relax</h3><p>Your beauty professional comes to you.</p></div>
     </div>
   </section>
@@ -109,14 +109,14 @@
   <section class="contact" id="contact">
     <div class="contact-wrap">
       <div class="contact-intro">
-        <div class="eyebrow">Your moment starts here</div>
-        <h2>Book your appointment</h2>
-        <p>Share your service and locality and we will confirm the details. Prefer the app? Book there too.</p>
+        <div class="eyebrow">Ready when you are</div>
+        <h2>Your next visit, made easy.</h2>
+        <p>Explore Aira, learn about our services, and book securely through the mobile app.</p>
         <div class="contact-detail">
           <div>✉ <a [href]="'mailto:' + email">{{ email }}</a></div>
         </div>
       </div>
-      <app-booking-form />
+      <app-download-button label="Get the Aira app" />
     </div>
   </section>
 </main>

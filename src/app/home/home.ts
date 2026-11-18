@@ -1,6 +1,6 @@
 import { Component, OnDestroy, afterNextRender, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { BookingForm } from '../site/booking-form';
+import { AppDownloadButton } from '../site/app-download-button';
 import { homeSchema, Seo } from '../site/seo';
 import { CITY_CARDS, HOME_FAQS, SERVICE_CARDS, SITE } from '../site/site-data';
 import { SiteFooter } from '../site/site-footer';
@@ -15,7 +15,7 @@ const SLIDES = [
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, SiteHeader, SiteFooter, BookingForm],
+  imports: [RouterLink, SiteHeader, SiteFooter, AppDownloadButton],
   templateUrl: './home.html',
 })
 export class Home implements OnDestroy {
@@ -29,7 +29,7 @@ export class Home implements OnDestroy {
     { title: 'Experience', copy: 'In beauty since 2000' },
     { title: 'Convenience', copy: 'No travel, no waiting' },
     { title: 'Personal care', copy: 'Services chosen around you' },
-    { title: 'Easy booking', copy: 'Website and mobile app' },
+    { title: 'Easy booking', copy: 'A few taps in the app' },
   ];
 
   private timer = 0;
